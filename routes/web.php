@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages/home');
-});
+Route::get('/', [PhotoController::class, 'index']);
 
 Route::get('/photos/new', function () {
-    return view('pages/photo_form');
+  return view('pages/photo_form');
 });
