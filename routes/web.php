@@ -14,8 +14,11 @@ use App\Http\Controllers\PhotoController;
 |
 */
 
+//Rota página inicial
 Route::get('/', [PhotoController::class, 'index']);
 
-Route::get('/photos/new', function () {
-  return view('pages/photo_form');
-});
+//Rota que exibe o formulário de cadastro
+Route::get('/photos/new', [PhotoController::class, 'create']);
+
+//Rota que insere no banco de dados uma nova foto
+Route::post('/photos', [PhotoController::class, 'store']);
