@@ -4,7 +4,7 @@
 @include('/partials/navbar')
 
 <div class="container">
-
+  {{$photo}}
   <!-- Coluna Btn voltar -->
   <div class="row">
     <div class="col-12 my-4">
@@ -18,8 +18,10 @@
           <h2 class="card-title p-2"><i class="fas fa-image"></i> Nova Imagem</h2>
         </div>
         <div class="card-body p-4">
-          <form action="/photos" method="POST">
+          <!-- <form action="/photos" method="POST"> -->
+          <form action="/photos/{{$photo->id}}" method="POST">
             @csrf
+            @method('PUT')
             <div class="row">
 
               <!-- Coluna da foto -->
@@ -50,7 +52,7 @@
                     <div class="input-group-text">
                       <i class="fas fa-image"></i>
                     </div>
-                    <input id="title" name="title" type="text" class="form-control" placeholder="Digite o título da sua imagem">
+                    <input id="title" name="title" type="text" class="form-control" placeholder="Digite o título da sua imagem" value={{$photo->title}}>
                   </div>
                 </div>
 
@@ -61,14 +63,14 @@
                     <div class="input-group-text">
                       <i class="far fa-calendar-alt"></i>
                     </div>
-                    <input id="date" name="date" type="date" class="form-control">
+                    <input id="date" name="date" type="date" class="form-control" value={{$photo->date}}>
                   </div>
                 </div>
 
                 <!-- Descrição -->
                 <div class="form-group">
                   <label for="description">Descrição</label>
-                  <textarea id="description" name="description" cols="40" rows="5" class="form-control" placeholder="Digite uma pequena descrição da imagem"></textarea>
+                  <textarea id="description" name="description" cols="40" rows="5" class="form-control" placeholder="Digite uma pequena descrição da imagem">{{$photo->description}}</textarea>
                 </div>
 
                 <!-- Botões -->
