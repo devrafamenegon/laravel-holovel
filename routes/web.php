@@ -17,6 +17,9 @@ use App\Http\Controllers\PhotoController;
 //Rota página inicial
 Route::get('/', [PhotoController::class, 'index']);
 
+//Rota minhas imagens
+Route::get('/photos', [PhotoController::class, 'showAllImagesOfUser']);
+
 //Rota que exibe o formulário de cadastro
 Route::get('/photos/new', [PhotoController::class, 'create']);
 

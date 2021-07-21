@@ -9,6 +9,7 @@ use App\Models\Photo;
 
 class PhotoController extends Controller
 {
+
   /**
    * Display a listing of the resource.
    *
@@ -18,6 +19,12 @@ class PhotoController extends Controller
   {
     $photos = Photo::all();
     return view('/pages/home', ['photos' => $photos]);
+  }
+
+  public function showAllImagesOfUser()
+  {
+    $photos = Photo::all();
+    return view('/pages/photo_list', ['photos' => $photos]);
   }
 
   /**
@@ -100,7 +107,7 @@ class PhotoController extends Controller
     $photo->update();
 
     //Redirecionar para a página inicial
-    return redirect('/');
+    return redirect('/photos');
   }
 
   /**
