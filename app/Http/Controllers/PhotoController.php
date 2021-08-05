@@ -116,8 +116,12 @@ class PhotoController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function deletePhoto($id)
   {
-    //
+    //Retorna a foto do banco de dados
+    $photo = Photo::findOrFail($id)->delete();
+
+    //Redirecionar para a página de Fotos
+    return redirect('/photos');
   }
 }
