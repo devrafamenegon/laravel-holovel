@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark gradient">
   <div class="container">
-    <a class="navbar-brand" href="/"><i class="fas fa-camera"></i><span class="ml-2 text-pacifico">Holovel</span></a>
+    <a class="navbar-brand" href="/"><span class="ml-2 text-pacifico">Holovel</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>

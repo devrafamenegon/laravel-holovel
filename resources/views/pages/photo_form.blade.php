@@ -37,7 +37,7 @@
                 <div class="d-flex flex-column h-100">
                   <div class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
                     {{-- <i class="far fa-image"></i> --}}
-                    <img id="preview-img" class="img-fluid" src="https://www.osmais.com/wallpapers/201209/dia-de-chuva-wallpaper.jpg" alt="">
+                    <img id="preview-img" height="340" class="w-100" style="object-fit: cover;" src="{{asset('/img/preview.png')}}" alt="">
                   </div>
                   <div class="form-group mt-2">
                     <div class="custom-file">
@@ -95,17 +95,6 @@
 
 </div><!-- Fim do container -->
 
-<script>
-  function loadFile(event) {
-
-    //variável que recebe o elemento img
-    var url = URL.createObjectURL(event.target.files[0]);
-
-    //
-    var photoPreview = document.getElementById('preview-img');
-
-    photoPreview.src = url;
-  }
-</script>
+<script src="{{asset('/js/script.js')}}"></script>
 
 @endsection

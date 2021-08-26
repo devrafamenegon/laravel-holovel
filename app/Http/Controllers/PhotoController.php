@@ -130,7 +130,17 @@ class PhotoController extends Controller
   public function deletePhoto($id)
   {
     //Retorna a foto do banco de dados
-    $photo = Photo::findOrFail($id)->delete();
+    $photo = Photo::findOrFail($id);
+
+    //Verifica se o arquivo existe
+    if (file_exists(public_path("/storage/photos/$photo->photo_url"))) {
+
+      //Excluir o arquivo de imagem
+      unlink(public_path("/storage/photos/$photo->photo_url"));
+    }
+
+    //Excluir o registro do bd
+    $photo->delete();
 
     //Redirecionar para a página de Fotos
     return redirect('/photos');

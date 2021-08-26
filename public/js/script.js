@@ -13,3 +13,15 @@ confirmationModal.addEventListener('show.bs.modal', function (event) {
   //Alterando o Action(rota) do formulário
   form.action = "/photos/"+button.getAttribute('data-photo-id')
 })
+
+
+function loadFile(event) {
+
+  //variável que recebe o elemento img
+  var url = URL.createObjectURL(event.target.files[0]);
+
+  //
+  var photoPreview = document.getElementById('preview-img');
+
+  photoPreview.src = url;
+}
