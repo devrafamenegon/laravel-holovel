@@ -33,4 +33,4 @@ Route::post('/photos', [PhotoController::class, 'store']);
 Route::put('/photos/{id}', [PhotoController::class, 'update']);
 
 //Rota que apaga uma foto do banco de dados
-Route::delete('/photos/{id}', [PhotoController::class, 'deletePhoto']);
+Route::delete('/photos/{id}', [PhotoController::class, 'destroy']);

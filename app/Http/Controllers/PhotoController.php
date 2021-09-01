@@ -53,24 +53,17 @@ class PhotoController extends Controller
     $photo->date = $request->date;
     $photo->description = $request->description;
     //upload
-    if ($request->hasFile('photo') && $request->file('photo')) {
-      //Define um nome aleatório para a foto, com base na data e hora atual
-      $nomeFoto = uniqid(date('HisYmd'));
-      //Recupera a extensão do arquivo
-      $extensao = $request->photo->extension();
-      //Nome do arquivo com extensão
-      $nomeArquivo = "{$nomeFoto}.{$extensao}";
-      //upload
-      $upload = $request->photo->move(public_path('/storage/photos'), $nomeArquivo);
-      $photo->photo_url = $nomeArquivo;
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+      //Adicinando o nome do arquivo ao atributo photo_url
+      $photo->photo_url = $this->uploadPhoto($request->photo);
     }
-    if ($upload) {
-      //Inserindo no banco de dados
-      $photo->save();
+    //Se tudo deu certo, salva no bd
+    if (true) {
+      $photo->save(); //Inserindo no banco de dados
     }
     //Redirecionar para a página inicial
     return redirect('/');
-  }
+  } //fim do store
 
 
   /**
@@ -127,7 +120,7 @@ class PhotoController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function deletePhoto($id)
+  public function destroy($id)
   {
     //Retorna a foto do banco de dados
     $photo = Photo::findOrFail($id);
@@ -144,5 +137,23 @@ class PhotoController extends Controller
 
     //Redirecionar para a página de Fotos
     return redirect('/photos');
+  }
+
+  public function uploadPhoto($photo)
+  {
+    //Define um nome aleatório para a foto, com base na data atual
+    $nomeFoto = sha1(uniqid(date('HisYmd')));
+    //Recupera a extensão do arquivo
+    $extensao = $photo->extension();
+    //Define o nome do arquivo com a extensão
+    $nomeArquivo = "{$nomeFoto}.{$extensao}";
+    //faz o upload
+    $upload = $photo->move(public_path('/storage/photos'), $nomeArquivo);
+    //retorna o nome do arquivo
+    return $nomeArquivo;
+  }
+
+  public function deletePhoto($filePhoto)
+  {
   }
 }
