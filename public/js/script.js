@@ -1,5 +1,5 @@
 //variável que recebe o elemento html(Modal)
-var confirmationModal = document.getElementById('confirmationModal')
+var confirmationModal = document.getElementById('confirmationModal');
 
 //adiciona um evento, toda vez que o modal for aberto
 confirmationModal.addEventListener('show.bs.modal', function (event) {
@@ -18,10 +18,9 @@ confirmationModal.addEventListener('show.bs.modal', function (event) {
 function loadFile(event) {
 
   //variável que recebe o elemento img
-  var url = URL.createObjectURL(event.target.files[0]);
-
-  //
   var photoPreview = document.getElementById('preview-img');
+
+  var url = URL.createObjectURL(event.target.files[0]);
 
   photoPreview.src = url;
 }
