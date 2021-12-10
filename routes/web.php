@@ -17,20 +17,27 @@ use App\Http\Controllers\PhotoController;
 //Rota página inicial
 Route::get('/', [PhotoController::class, 'index']);
 
-//Rota minhas imagens
-Route::get('/photos', [PhotoController::class, 'showAllImagesOfUser']);
+Route::middleware(['auth'])->group(function () {
 
-//Rota que exibe o formulário de cadastro
-Route::get('/photos/new', [PhotoController::class, 'create']);
+  //Rota minhas imagens
+  Route::get('/photos', [PhotoController::class, 'showAllImagesOfUser']);
 
-//Rota que exibe o formulário de edição
-Route::get('/photos/edit/{id}', [PhotoController::class, 'edit']);
+  //Rota que exibe o formulário de cadastro
+  Route::get('/photos/new', [PhotoController::class, 'create']);
 
-//Rota que insere no banco de dados uma nova foto
-Route::post('/photos', [PhotoController::class, 'store']);
+  //Rota que exibe o formulário de edição
+  Route::get('/photos/edit/{id}', [PhotoController::class, 'edit']);
 
-//Rota que altera uma foto no banco de dados
-Route::put('/photos/{id}', [PhotoController::class, 'update']);
+  //Rota que insere no banco de dados uma nova foto
+  Route::post('/photos', [PhotoController::class, 'store']);
 
-//Rota que apaga uma foto do banco de dados
-Route::delete('/photos/{id}', [PhotoController::class, 'destroy']);
+  //Rota que altera uma foto no banco de dados
+  Route::put('/photos/{id}', [PhotoController::class, 'update']);
+
+  //Rota que apaga uma foto do banco de dados
+  Route::delete('/photos/{id}', [PhotoController::class, 'destroy']);
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+  return view('dashboard');
+})->name('dashboard');

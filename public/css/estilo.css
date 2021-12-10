@@ -44,6 +44,7 @@ body {
   .login-cover {
     display: none !important;
   }
+
   .form-login {
     padding: 0 !important;
   }
@@ -62,7 +63,7 @@ body {
 
 /*Lista de imagens*/
 
-/*Formulário de fotos*/
+/*Formulario de fotos*/
 .miniatura {
   color: #6c757d;
   background-color: #e9ecef;
