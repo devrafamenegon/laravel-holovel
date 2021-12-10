@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
+  }
 }

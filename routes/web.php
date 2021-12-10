@@ -16,6 +16,8 @@ use App\Http\Controllers\PhotoController;
 
 //Rota página inicial
 Route::get('/', [PhotoController::class, 'index']);
+Route::get('/dashboard', [PhotoController::class, 'index']);
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -38,6 +40,6 @@ Route::middleware(['auth'])->group(function () {
   Route::delete('/photos/{id}', [PhotoController::class, 'destroy']);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-  return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//   return view('dashboard');
+// })->name('dashboard');
